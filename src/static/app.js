@@ -27,6 +27,31 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
         `;
 
+        // Create and append participants section
+        const participantsSection = document.createElement("div");
+        participantsSection.className = "participants-section";
+
+        const participantsHeader = document.createElement("h5");
+        participantsHeader.textContent = "Учасники:";
+        participantsSection.appendChild(participantsHeader);
+
+        const participantsListUl = document.createElement("ul");
+        participantsListUl.className = "participants-list";
+
+        if (details.participants && details.participants.length > 0) {
+          details.participants.forEach(participantEmail => {
+            const li = document.createElement("li");
+            li.textContent = participantEmail;
+            participantsListUl.appendChild(li);
+          });
+        } else {
+          const li = document.createElement("li");
+          li.textContent = "Ще ніхто не записався.";
+          participantsListUl.appendChild(li);
+        }
+        participantsSection.appendChild(participantsListUl);
+        activityCard.appendChild(participantsSection);
+
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
